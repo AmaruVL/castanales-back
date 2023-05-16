@@ -1,4 +1,4 @@
-create table traza(
+create table trazas(
   codigo_ant varchar(15) primary key,
   codigo_de_la_parcela varchar(10),
   razon_social varchar(64),
@@ -38,4 +38,4 @@ create table traza(
 
 select  * 
 -- delete 
-from traza
+from trazas
