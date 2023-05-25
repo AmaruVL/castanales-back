@@ -3,7 +3,15 @@ const { Traza } = require("../models/traza");
 const getTrazas = async (req, res) => {
   try {
     const trazas = await Traza.findAll({
-      limit: 10,
+      attributes: [
+        "codigo_ant",
+        "dni_ruc",
+        "razon_social",
+        "este",
+        "norte",
+        "observaciones",
+      ],
+      // limit: 5,
     });
     res.json(trazas);
   } catch (error) {
@@ -14,8 +22,8 @@ const getTrazas = async (req, res) => {
 };
 
 const getTrazaById = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const traza = await Traza.findByPk(id);
     if (!traza)
       return res.status(404).json({

@@ -28,7 +28,7 @@ class Server {
   }
 
   routes() {
-    this.app.use("/traza", require("../routes/trazas"));
+    this.app.use("/api/trazabilidad", require("../routes/trazas"));
   }
 
   listen() {
