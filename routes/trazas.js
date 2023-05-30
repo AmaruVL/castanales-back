@@ -1,10 +1,11 @@
 const { Router } = require("express");
 const { param } = require("express-validator");
-const { getTrazaById, getTrazas } = require("../controllers/trazas");
+const { getTrazaById, getTrazas, getTrazaStats } = require("../controllers/trazas");
 const { validarCampos } = require("../middlewares/validarCampos");
 
 const router = Router();
 router.get("/", getTrazas);
+router.get("/estadisticas/:id", getTrazaStats)
 router.get(
   "/:id",
   [

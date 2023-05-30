@@ -1,4 +1,8 @@
+const { sequelize } = require("../config/database");
+const { formatStats } = require("../helpers/formatData");
+const { getQueryStats } = require("../helpers/queries");
 const { Traza } = require("../models/traza");
+const { QueryTypes } = require("sequelize");
 
 const getTrazas = async (req, res) => {
   try {
@@ -37,17 +41,23 @@ const getTrazaById = async (req, res) => {
   }
 };
 
+const getTrazaStats = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const stringQueryStats = getQueryStats(id);
+    const [stats] = await sequelize.query(stringQueryStats, {
+      type: QueryTypes.SELECT,
+    });
+    res.json(formatStats(stats));
+  } catch (error) {
+    return res.status(500).json({
+      msg: error.message,
+    });
+  }
+};
+
 module.exports = {
   getTrazaById,
   getTrazas,
+  getTrazaStats,
 };
-
-/*
-  const { q, nombre = "no name", apikey } = req.query;
-
-  res.json({
-    msg: "get API - Controlador",
-    nombre,
-    apikey,
-  });
-*/
