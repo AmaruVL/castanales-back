@@ -29,6 +29,7 @@ class Server {
 
   routes() {
     this.app.use("/api/trazabilidad", require("../routes/trazas"));
+    this.app.use("/api/razonsocial", require("../routes/razonSocial"));
   }
 
   listen() {
