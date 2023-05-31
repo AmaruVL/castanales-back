@@ -6,6 +6,7 @@ const getPersonas = async (req, res) => {
     const personas = await Traza.findAll({
       attributes: ["razon_social", "dni_ruc", "edad", "nro_celular"],
       group: ["razon_social", "dni_ruc", "edad", "nro_celular"],
+      order: [["razon_social", "ASC"]],
     });
     res.json(personas);
   } catch (error) {
@@ -16,5 +17,5 @@ const getPersonas = async (req, res) => {
 };
 
 module.exports = {
-  getPersonas
+  getPersonas,
 };

@@ -41,7 +41,9 @@ const getTrazaById = async (req, res) => {
   }
 };
 
-const getTrazaStats = async (req, res) => {
+const getTrazaStatsById = async (req, res) => {
+  //Obtener estadisticas de una persona por si dni o ruc
+  //Si id es -1, se obtendrán las estadisticas de todos
   try {
     const { id } = req.params;
     const stringQueryStats = getQueryStats(id);
@@ -59,5 +61,5 @@ const getTrazaStats = async (req, res) => {
 module.exports = {
   getTrazaById,
   getTrazas,
-  getTrazaStats,
+  getTrazaStatsById,
 };

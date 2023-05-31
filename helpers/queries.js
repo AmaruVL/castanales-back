@@ -1,4 +1,4 @@
-const getQueryStats = (dniRuc = -1) => {
+const getQueryStats = (dniRuc = "-1") => {
   // dniRuc -1 significa seleccionar todos
   const query = `
   SELECT
@@ -26,7 +26,7 @@ const getQueryStats = (dniRuc = -1) => {
     COUNT(CASE WHEN lianas = 'Si' THEN 1 END) AS lianas_si,
     COUNT(CASE WHEN lianas = 'No' THEN 1 END) AS lianas_no	   
   FROM trazas
-  WHERE dni_ruc = ${dniRuc === -1 ? "dni_ruc" : `'${dniRuc}'`}`;
+  WHERE dni_ruc = ${dniRuc === "-1" ? "dni_ruc" : `'${dniRuc}'`}`;
   return query;
 };
 

@@ -1,11 +1,23 @@
 const { Router } = require("express");
 const { param } = require("express-validator");
-const { getTrazaById, getTrazas, getTrazaStats } = require("../controllers/trazas");
+const {
+  getTrazaById,
+  getTrazas,
+  getTrazaStats,
+  getTrazaStatsById,
+} = require("../controllers/trazas");
 const { validarCampos } = require("../middlewares/validarCampos");
 
 const router = Router();
+router.get(
+  "/estadisticas/:id",
+  [
+    param("id", "DNI o RUC no válido").matches(/^(?:-1|[0-9]{8}([0-9]{3})?)$/),
+    validarCampos,
+  ],
+  getTrazaStatsById
+);
 router.get("/", getTrazas);
-router.get("/estadisticas/:id", getTrazaStats)
 router.get(
   "/:id",
   [
